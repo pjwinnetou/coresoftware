@@ -21,6 +21,7 @@ pkginclude_HEADERS = \
   KFParticle_DST.h \
   KFParticle_truthAndDetTools.h \
   KFParticle_triggerInfo.h \
+  KFParticle_centralityInfo.h \
   KFParticle_nTuple.h \
   KFParticle_Tools.h \
   KFParticle_MVA.h \
@@ -42,6 +43,7 @@ libkfparticle_sphenix_la_SOURCES = \
   KFParticle_DST.cc \
   KFParticle_truthAndDetTools.cc \
   KFParticle_triggerInfo.cc \
+  KFParticle_centralityInfo.cc \
   KFParticle_nTuple.cc \
   KFParticle_Tools.cc \
   KFParticle_MVA.cc \
@@ -61,6 +63,7 @@ libkfparticle_sphenix_la_LIBADD = \
   -lTMVA \
   -lphhepmc \
   -lcalotrigger \
+  -lcentrality_io \
   -lffarawobjects
 
 # Rule for generating table CINT dictionaries.

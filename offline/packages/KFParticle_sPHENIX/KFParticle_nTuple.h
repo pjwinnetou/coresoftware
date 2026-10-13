@@ -2,6 +2,7 @@
 #define KFPARTICLESPHENIX_KFPARTICLENTUPLE_H
 
 #include "KFParticle_triggerInfo.h"
+#include "KFParticle_centralityInfo.h"
 #include "KFParticle_truthAndDetTools.h"
 
 #include <KFParticle.h>
@@ -14,7 +15,7 @@
 class PHCompositeNode;
 class TTree;
 
-class KFParticle_nTuple : public KFParticle_truthAndDetTools, public KFParticle_triggerInfo
+class KFParticle_nTuple : public KFParticle_truthAndDetTools, public KFParticle_triggerInfo, public KFParticle_centralityInfo
 {
  public:
   /// Constructor
@@ -89,6 +90,7 @@ class KFParticle_nTuple : public KFParticle_truthAndDetTools, public KFParticle_
   std::vector<int> m_num_tracks_from_intermediate_nTuple;
   bool m_truth_matching{false};
   bool m_get_trigger_info{false};
+  bool m_get_centrality_info{false};
   bool m_detector_info{false};
   bool m_calo_info{false};
   bool m_get_dEdx{false};
@@ -245,6 +247,7 @@ class KFParticle_nTuple : public KFParticle_truthAndDetTools, public KFParticle_
   uint64_t m_last_event_bco{0}; //only keeping this, BCO for the last event
 
   bool m_trigger_info_available{false};
+  bool m_centrality_info_available{false};
 };
 
 #endif

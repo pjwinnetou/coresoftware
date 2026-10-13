@@ -321,6 +321,10 @@ void KFParticle_nTuple::initializeBranches(PHCompositeNode* topNode)
   {
     m_trigger_info_available = buildTriggerBranches(topNode, m_tree);
   }
+  if (m_get_centrality_info)
+  {
+    m_centrality_info_available = buildCentralityBranches(topNode, m_tree);
+  }
 }
 
 void KFParticle_nTuple::fillBranch(PHCompositeNode* topNode,
@@ -714,9 +718,21 @@ void KFParticle_nTuple::fillBranch(PHCompositeNode* topNode,
     m_bco = -1;
   }
 
+  bool crossingIsZero = true;
+  for (int i = 0; i < m_num_tracks_nTuple; ++i)
+  {
+    if (m_calculated_daughter_bunch_crossing[i] != 0)
+    {
+      crossingIsZero = false;
+    }
+  }
   if (m_trigger_info_available)
   {
     fillTriggerBranches(topNode);
+  }
+  if (m_centrality_info_available)
+  {
+    fillCentralityBranches(topNode, crossingIsZero);
   }
 
   if (fillConditionMet())
@@ -732,6 +748,10 @@ void KFParticle_nTuple::fillBranch(PHCompositeNode* topNode,
   if (m_trigger_info_available)
   {
     resetTriggerBranches();
+  }
+  if (m_centrality_info_available)
+  {
+    resetCentralityBranches();
   }
 }
 
